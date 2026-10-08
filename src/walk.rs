@@ -68,6 +68,7 @@ fn stat_times(md: &std::fs::Metadata) -> (i64, i64, i64, i64, u32, u32, u32, u64
     let crtime = {
         #[cfg(target_os = "macos")]
         {
+            use std::os::macos::fs::MetadataExt as _;
             md.st_birthtime()
         }
         #[cfg(not(target_os = "macos"))]
